@@ -11,7 +11,7 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Vector2 _inputVector;
     private bool _isInput;
 
-    public CharacterController characterController; // Move 함수 호출시 사용
+    private Player _player; // Move 함수 호출시 사용
 
     private void Awake()
     {
@@ -41,12 +41,8 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void InputControlVector()
     {
+        _player.PlayerMove(_inputVector);
         Debug.Log(_inputVector);
-
-        /*if (characterController)
-        {
-            characterController.Move();
-        }*/
     }
     
     public void ControlJoystickLever(PointerEventData eventData)
