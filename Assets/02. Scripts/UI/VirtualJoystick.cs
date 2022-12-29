@@ -11,7 +11,7 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Vector2 _inputVector;
     private bool _isInput;
 
-    private Player _player; // Move 함수 호출시 사용
+    private DM.Player _player; // Move 함수 호출시 사용
 
     private void Awake()
     {
