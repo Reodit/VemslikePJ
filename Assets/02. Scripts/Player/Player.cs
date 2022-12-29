@@ -29,7 +29,7 @@ namespace DM
         private void Update()
         {
             //PlayerMove();
-            PlayerRotate();
+            //PlayerRotate();
         }
 
         private void OnMove(InputValue value) // "Move" Actions에 해당하는 키 입력 시 호출
@@ -57,16 +57,15 @@ namespace DM
             _cc.SimpleMove(_moveVec * _playerStat.MoveSpeed);
         }
 
-        private void PlayerRotate()
+        public void PlayerRotate(Vector3 vec)
         {
-            if (_inputVec.sqrMagnitude == 0)
+            if (vec.sqrMagnitude == 0)
             {
                 return;
             }
 
-            float targetAngle = Mathf.Atan2(_moveVec.x, _moveVec.z) * Mathf.Rad2Deg;
-            float angle =
-                Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, _smoothTime);
+            float targetAngle = Mathf.Atan2(vec.x, vec.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, _smoothTime);
             transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
         }
     }

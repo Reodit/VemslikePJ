@@ -1,4 +1,5 @@
 using System;
+using DM;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,6 +17,11 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
+    }
+
+    private void Start()
+    {
+        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     public void Update()
@@ -42,6 +48,7 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private void InputControlVector()
     {
         _player.PlayerMove(_inputVector);
+        _player.PlayerRotate(_inputVector);
         Debug.Log(_inputVector);
     }
     

@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Root: {fileID: 4576686252731828430}
   m_Roots: []
   m_UpdateRate: 60
-  m_UpdateMode: 1
+  m_UpdateMode: 3
   m_Damping: 0.1
   m_DampingDistrib:
     serializedVersion: 2
@@ -559,14 +559,14 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Stiffness: 0.5
+  m_Stiffness: 0
   m_StiffnessDistrib:
     serializedVersion: 2
     m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_Inert: 0.5
+  m_Inert: 0
   m_InertDistrib:
     serializedVersion: 2
     m_Curve: []
@@ -2971,7 +2971,7 @@ MonoBehaviour:
   - {fileID: 4576686253677579849}
   - {fileID: 4576686253529307794}
   m_UpdateRate: 60
-  m_UpdateMode: 1
+  m_UpdateMode: 3
   m_Damping: 0.2
   m_DampingDistrib:
     serializedVersion: 2
@@ -3717,7 +3717,7 @@ MonoBehaviour:
   m_Root: {fileID: 4576686253866088963}
   m_Roots: []
   m_UpdateRate: 60
-  m_UpdateMode: 1
+  m_UpdateMode: 3
   m_Damping: 0.1
   m_DampingDistrib:
     serializedVersion: 2
@@ -3915,7 +3915,7 @@ MonoBehaviour:
   m_Root: {fileID: 4576686253921749551}
   m_Roots: []
   m_UpdateRate: 60
-  m_UpdateMode: 1
+  m_UpdateMode: 3
   m_Damping: 0.1
   m_DampingDistrib:
     serializedVersion: 2
@@ -4171,10 +4171,10 @@ Animator:
   m_GameObject: {fileID: 4576686253938855978}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: bf0d95bca6c43194db16f6288cbf9a18, type: 3}
-  m_Controller: {fileID: 9100000, guid: cbd1db45c75e5b948a5befe9ecb80421, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0f7486c64e04d7e41b4a588aa02d66e7, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -4530,7 +4530,7 @@ MonoBehaviour:
   m_Root: {fileID: 4576686254166776335}
   m_Roots: []
   m_UpdateRate: 60
-  m_UpdateMode: 1
+  m_UpdateMode: 3
   m_Damping: 0.1
   m_DampingDistrib:
     serializedVersion: 2
@@ -4847,7 +4847,7 @@ MonoBehaviour:
   m_Root: {fileID: 4576686254271718652}
   m_Roots: []
   m_UpdateRate: 60
-  m_UpdateMode: 1
+  m_UpdateMode: 3
   m_Damping: 0.1
   m_DampingDistrib:
     serializedVersion: 2
@@ -6526,7 +6526,7 @@ MonoBehaviour:
   m_Root: {fileID: 4576686254712042201}
   m_Roots: []
   m_UpdateRate: 60
-  m_UpdateMode: 1
+  m_UpdateMode: 3
   m_Damping: 0.1
   m_DampingDistrib:
     serializedVersion: 2
