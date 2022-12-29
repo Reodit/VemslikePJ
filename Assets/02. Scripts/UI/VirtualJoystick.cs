@@ -9,7 +9,7 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private RectTransform _rectTransform;
     [SerializeField, Range(10f, 150f)] private float leverRange;
     
-    private Vector2 _inputVector;
+    private Vector3 _inputVector;
     private bool _isInput;
 
     private DM.Player _player; // Move 함수 호출시 사용
@@ -26,11 +26,7 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void Update()
     {
-        if (_isInput)
-        {
-            InputControlVector();
-        }
-        
+        InputControlVector(); // 변경점
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -63,8 +59,9 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     
     public void OnEndDrag(PointerEventData eventData)
     {        
-        _isInput = false;
         _inputVector = Vector2.zero;
         lever.anchoredPosition = Vector2.zero;
+        _isInput = false;
+
     }
 }

@@ -51,7 +51,7 @@ namespace DM
                 _animator.SetBool("isMove", true);
             }
 
-
+            Debug.Log(_moveVec);
             // CharacterController의 SimpleMove로 캐릭터 이동
             // 방향 x 속도
             _cc.SimpleMove(_moveVec * _playerStat.MoveSpeed);
@@ -64,7 +64,7 @@ namespace DM
                 return;
             }
 
-            float targetAngle = Mathf.Atan2(vec.x, vec.z) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(vec.x, vec.y) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, _smoothTime);
             transform.rotation = Quaternion.Euler(0.0f, angle, 0.0f);
         }
