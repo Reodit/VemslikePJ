@@ -4,8 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - UI
-  - Popup
+  - UICanvas
+  - UIBackground
   layers:
   - Default
   - TransparentFX

@@ -4,27 +4,15 @@ using UnityEngine;
 
 public class UIHanddler : MonoBehaviour
 {
-    public void UICreate(GameObject uiPrefab, Transform parentCanvas, List<GameObject> currentActiveUIList)
+    // Start is called before the first frame update
+    void Start()
     {
-        Instantiate(uiPrefab, parentCanvas);
-        currentActiveUIList.Add(uiPrefab);
-    }
-    public void UIClear(GameObject uiPrefab, List<GameObject> currentActiveUIList)
-    {
-        uiPrefab.SetActive(false);
-        currentActiveUIList.Remove(uiPrefab);
-    }
-    
-    public void PopupCreate(GameObject popupPrefab, Transform parentCanvas, List<GameObject> currentActivePopupList)
-    {
-        Instantiate(popupPrefab, parentCanvas);
-        currentActivePopupList.Add(popupPrefab);
+        
     }
 
-    public void PopupClear(GameObject popupPrefab, List<GameObject> currentActivePopupList)
+    // Update is called once per frame
+    void Update()
     {
-        popupPrefab.SetActive(false);
-        currentActivePopupList.Remove(popupPrefab);
+        
     }
-
 }
