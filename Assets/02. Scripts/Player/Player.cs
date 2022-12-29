@@ -13,29 +13,40 @@ public class Player : MonoBehaviour
     private Vector3 _moveVec;       // 이동 벡터
     
     private PlayerStat _playerStat;
-    
+    private Animator _animator;
     private CharacterController _cc;
     
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         _cc = GetComponent<CharacterController>();
         _playerStat = GetComponent<PlayerStat>();
     }
 
     private void Update()
     {
-        PlayerMove();
+        //PlayerMove();
         PlayerRotate();
     }
     
     private void OnMove(InputValue value) // "Move" Actions에 해당하는 키 입력 시 호출
     {
         _inputVec = value.Get<Vector2>(); // Get<T> : 프로필에서 설정한 컨트롤 타입 T 값을 가져오는 함수
-
     }
-    private void PlayerMove()
+    public void PlayerMove(Vector3 vec)
     {
-        _moveVec = new Vector3(_inputVec.x, 0.0f, _inputVec.y);
+        
+        _moveVec = new Vector3(vec.x, 0.0f, vec.y);
+
+        if (_moveVec == Vector3.zero)
+        {
+            _animator.SetBool("isMove", false);
+        }
+        else
+        {
+            _animator.SetBool("isMove", true);
+        }
+        
         
         // CharacterController의 SimpleMove로 캐릭터 이동
         // 방향 x 속도
