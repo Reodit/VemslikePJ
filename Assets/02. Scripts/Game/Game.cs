@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using DM;
 
 public class Game : MonoBehaviour
 {
-    private Player player;
     
     // TODO : 스크립트 수정하고 프리펩 동민님 걸로 바꿔야 됨
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] Vector3 _size = Vector3.one;
+    [SerializeField] private CinemachineVirtualCamera _cinemachineVirtual;
 
     private ReLocation[] _reLocations = new ReLocation[9];
     private Transform _playerTrans;
@@ -18,7 +19,7 @@ public class Game : MonoBehaviour
     private ReLocation _preTile;
     private float _maxDisPow;
     private PlayerDirection _playerDirection;
-    private float _halfSize; 
+    private Player _player;
 
 
     public enum PlayerDirection
@@ -36,8 +37,10 @@ public class Game : MonoBehaviour
     
     private void Awake()
     {
-        player = Instantiate(_playerPrefab).GetComponent<Player>();
-        _playerTrans = player.transform;
+        _player = Instantiate(_playerPrefab).GetComponent<Player>();
+        _playerTrans = _player.transform;
+        _cinemachineVirtual.Follow = _player.transform;
+        _cinemachineVirtual.LookAt = _player.transform;
     }
 
     private void Start()
@@ -47,7 +50,6 @@ public class Game : MonoBehaviour
         _currentTile = _reLocations[4];
         // 타일 중앙으로부터의 거리 (반지름)
         _maxDisPow = Mathf.Pow(_size.x / 2, 2);
-        _halfSize = _size.x / 2;
         StartCoroutine(CoRelocateTiles());
     }
 
