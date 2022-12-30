@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DM;
 
 public class Game : MonoBehaviour
 {
-    public static Player player;
+    private Player player;
     
     // TODO : 스크립트 수정하고 프리펩 동민님 걸로 바꿔야 됨
     [SerializeField] private GameObject _playerPrefab;
@@ -37,11 +38,11 @@ public class Game : MonoBehaviour
     {
         player = Instantiate(_playerPrefab).GetComponent<Player>();
         _playerTrans = player.transform;
-        SetFirstTileSize();
     }
 
     private void Start()
     {
+        SetFirstTileSize();
         // 중앙 타일
         _currentTile = _reLocations[4];
         // 타일 중앙으로부터의 거리 (반지름)
@@ -53,8 +54,10 @@ public class Game : MonoBehaviour
     private void SetFirstTileSize()
     {
         _reLocations = FindObjectsOfType<ReLocation>();
+        Debug.Log(_reLocations.Length);
         foreach (ReLocation reLocation in _reLocations)
         {
+            Debug.Log(reLocation);
             reLocation.SetSize(_size);
             reLocation.SetFirstLocation(_size);
         }
@@ -65,12 +68,11 @@ public class Game : MonoBehaviour
         _playerDirection = PlayerDirection.None;
         int tempFrame = 0;
         Vector3 preVec = _playerTrans.position;
-        yield return new WaitForSeconds(1f);
-        /*while (tempFrame < 10)
+        while (tempFrame < 10)
         {
             yield return new WaitForEndOfFrame();
             tempFrame++;
-        }*/
+        }
         Debug.Log($"_maxDisPow : {_maxDisPow}");
 
         // 어느 타일 위에 있는지
