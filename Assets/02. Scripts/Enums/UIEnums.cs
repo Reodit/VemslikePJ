@@ -8,7 +8,7 @@ public enum SceneState
 
 public enum UIState
 {
-    UICLear = 0,
+    UIClear = 0,
     UICreate,
     PopupCreate,
     PopupClear,
