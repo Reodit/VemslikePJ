@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerStat : Stat
 {
     [SerializeField] protected int _exp; // 경험치
-
+    
     public int Exp
     {
         get

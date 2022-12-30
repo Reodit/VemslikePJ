@@ -1,4 +1,5 @@
 using System;
+using DM;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,23 +9,24 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private RectTransform _rectTransform;
     [SerializeField, Range(10f, 150f)] private float leverRange;
     
-    private Vector2 _inputVector;
+    private Vector3 _inputVector;
     private bool _isInput;
 
-    public CharacterController characterController; // Move 함수 호출시 사용
+    private DM.Player _player; // Move 함수 호출시 사용
 
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
     }
 
+    private void Start()
+    {
+        _player = GameObject.FindWithTag("Player").GetComponent<Player>();
+    }
+
     public void Update()
     {
-        if (_isInput)
-        {
-            InputControlVector();
-        }
-        
+        InputControlVector(); // 변경점
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -41,12 +43,9 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     private void InputControlVector()
     {
+        _player.PlayerMove(_inputVector);
+        _player.PlayerRotate(_inputVector);
         Debug.Log(_inputVector);
-
-        /*if (characterController)
-        {
-            characterController.Move();
-        }*/
     }
     
     public void ControlJoystickLever(PointerEventData eventData)
@@ -60,8 +59,9 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     
     public void OnEndDrag(PointerEventData eventData)
     {        
-        _isInput = false;
         _inputVector = Vector2.zero;
         lever.anchoredPosition = Vector2.zero;
+        _isInput = false;
+
     }
 }
