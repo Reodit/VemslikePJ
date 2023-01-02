@@ -7,10 +7,9 @@ using DM;
 
 public class Game : MonoBehaviour
 {
+    public static Player player;
     
-    // TODO : 스크립트 수정하고 프리펩 동민님 걸로 바꿔야 됨
     [SerializeField] private GameObject _playerPrefab;
-    [SerializeField] Vector3 _size = Vector3.one;
     [SerializeField] private CinemachineVirtualCamera _cinemachineVirtual;
 
     private ReLocation[] _reLocations = new ReLocation[9];
@@ -19,8 +18,14 @@ public class Game : MonoBehaviour
     private ReLocation _preTile;
     private float _maxDisPow;
     private PlayerDirection _playerDirection;
-    private Player _player;
 
+    [SerializeField] Vector3 _size = Vector3.one;
+
+    public Vector3 Size
+    {
+        get { return _size; }
+        private set { Size = value; }
+    }
 
     public enum PlayerDirection
     {
@@ -37,10 +42,12 @@ public class Game : MonoBehaviour
     
     private void Awake()
     {
-        _player = Instantiate(_playerPrefab).GetComponent<Player>();
-        _playerTrans = _player.transform;
-        _cinemachineVirtual.Follow = _player.transform;
-        _cinemachineVirtual.LookAt = _player.transform;
+        player = Instantiate(_playerPrefab).GetComponent<Player>();
+        _playerTrans = player.transform;
+        _cinemachineVirtual.Follow = player.transform;
+        _cinemachineVirtual.LookAt = player.transform;
+        
+        PoolManager.instance.Init();
     }
 
     private void Start()
