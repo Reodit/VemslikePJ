@@ -39,22 +39,13 @@ namespace DM
 
         public void PlayerMove(Vector3 vec)
         {
-
             _moveVec = new Vector3(vec.x, 0.0f, vec.y);
-
-            if (_moveVec == Vector3.zero)
-            {
-                _animator.SetBool("isMove", false);
-            }
-            else
-            {
-                _animator.SetBool("isMove", true);
-            }
-
-            Debug.Log(_moveVec);
+            
             // CharacterController의 SimpleMove로 캐릭터 이동
             // 방향 x 속도
             _cc.SimpleMove(_moveVec * _playerStat.MoveSpeed);
+            _animator.SetFloat("Speed", vec.magnitude);
+
         }
 
         public void PlayerRotate(Vector3 vec)
