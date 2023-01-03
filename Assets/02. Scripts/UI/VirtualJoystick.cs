@@ -1,4 +1,3 @@
-using System;
 using DM;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -45,7 +44,6 @@ public class VirtualJoystick : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         _player.PlayerMove(_inputVector);
         _player.PlayerRotate(_inputVector);
-        Debug.Log(_inputVector);
     }
     
     public void ControlJoystickLever(PointerEventData eventData)
