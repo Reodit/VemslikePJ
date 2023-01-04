@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerStat : Stat
 {
     [SerializeField] protected int _exp; // 경험치
-    
+    public bool isDie;
+
     public int Exp
     {
         get
@@ -28,5 +29,20 @@ public class PlayerStat : Stat
         _attackSpeed = 1;
         _moveSpeed = 5.0f;
         _defense = 5;
+        isDie = false;
     }
+
+    public void TakeDamage(int damage)
+    {
+        _hp -= damage;
+
+        if (_hp <= 0)
+        {
+            Debug.Log("Player Die");
+        }
+
+
+    }
+    
+    
 }
