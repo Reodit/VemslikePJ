@@ -51,7 +51,6 @@ namespace DM
                 _animator.SetBool("isMove", true);
             }
 
-            Debug.Log(_moveVec);
             // CharacterController의 SimpleMove로 캐릭터 이동
             // 방향 x 속도
             _cc.SimpleMove(_moveVec * _playerStat.MoveSpeed);

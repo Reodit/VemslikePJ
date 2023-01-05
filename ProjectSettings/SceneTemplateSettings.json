@@ -52,6 +52,13 @@
         },
         {
             "userAdded": false,
+            "type": "GameObject",
+            "ignore": false,
+            "defaultInstantiationMode": 0,
+            "supportsModification": true
+        },
+        {
+            "userAdded": false,
             "type": "UnityEditor.LightingDataAsset",
             "ignore": false,
             "defaultInstantiationMode": 0,

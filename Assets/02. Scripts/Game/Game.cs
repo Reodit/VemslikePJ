@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using DM;
+using UnityEngine.Serialization;
 
 public class Game : MonoBehaviour
 {
-    public static Player player;
-    
+    public Player Player { get; private set; }
+    public Wave Wave { get; private set; }
+
     [SerializeField] private GameObject _playerPrefab;
     [SerializeField] private CinemachineVirtualCamera _cinemachineVirtual;
 
@@ -27,7 +29,7 @@ public class Game : MonoBehaviour
         private set { Size = value; }
     }
 
-    public enum PlayerDirection
+    enum PlayerDirection
     {
         None,
         LeftUp,
@@ -39,15 +41,17 @@ public class Game : MonoBehaviour
         Down,
         RightDown,
     }
-    
+
     private void Awake()
     {
-        player = Instantiate(_playerPrefab).GetComponent<Player>();
-        _playerTrans = player.transform;
-        _cinemachineVirtual.Follow = player.transform;
-        _cinemachineVirtual.LookAt = player.transform;
+        Player = Instantiate(_playerPrefab).GetComponent<Player>();
+        _playerTrans = Player.transform;
+        _cinemachineVirtual.Follow = _playerTrans;
+        _cinemachineVirtual.LookAt = _playerTrans;
         
-        PoolManager.instance.Init();
+        ResourceManager.instance.Init();
+        MonsterPoolManager.instance.Init();
+        ItemPoolManager.instance.Init();
     }
 
     private void Start()
@@ -59,14 +63,17 @@ public class Game : MonoBehaviour
         _maxDisPow = Mathf.Pow(_size.x / 2, 2);
         StartCoroutine(CoRelocateTiles());
     }
+    
+    private void OnDestroy()
+    {
+        // 매니저들 Clear 함수 호출
+    }
 
     private void SetFirstTileSize()
     {
         _reLocations = FindObjectsOfType<ReLocation>();
-        Debug.Log(_reLocations.Length);
         foreach (ReLocation reLocation in _reLocations)
         {
-            Debug.Log(reLocation);
             reLocation.SetSize(_size);
             reLocation.SetFirstLocation(_size);
         }
@@ -82,7 +89,6 @@ public class Game : MonoBehaviour
             yield return new WaitForEndOfFrame();
             tempFrame++;
         }
-        Debug.Log($"_maxDisPow : {_maxDisPow}");
 
         // 어느 타일 위에 있는지
         Vector3 currentVec = _playerTrans.position;
@@ -100,9 +106,7 @@ public class Game : MonoBehaviour
             currentDisXPow = Mathf.Pow(_playerTrans.position.x - _reLocations[i].GetPosition().x, 2);
             currentDisZPow = Mathf.Pow(_playerTrans.position.z - _reLocations[i].GetPosition().z, 2);
             float currentDisPow = currentDisXPow + currentDisZPow;
-            Debug.Log($"_reLocations[i] : {_reLocations[i].name} currentDisX : {currentDisXPow} currentDisZ : {currentDisZPow}");
             isChangedTile = currentDisPow < _maxDisPow;
-            Debug.Log($"isChangedTile : {isChangedTile}");
             if (isChangedTile)
             {
                 _preTile = _currentTile;
@@ -110,7 +114,6 @@ public class Game : MonoBehaviour
                 break;
             }
 
-            Debug.Log($"_preTile : {_preTile}"); 
         }
         
         
@@ -177,8 +180,6 @@ public class Game : MonoBehaviour
 
             // 타일 옮기기
 
-            Debug.Log($"_currentTile : {_currentTile.name}");
-            Debug.Log($"_playerDirection : {_playerDirection}");
             switch (_playerDirection)
             {
                 case PlayerDirection.LeftUp:
@@ -315,4 +316,6 @@ public class Game : MonoBehaviour
         // 반복
         StartCoroutine(CoRelocateTiles());
     }
+
+    
 }
