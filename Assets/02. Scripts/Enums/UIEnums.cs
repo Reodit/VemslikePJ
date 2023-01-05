@@ -14,3 +14,9 @@ public enum UIState
     PopupClear,
     PopupExist
 }
+
+public enum UIType
+{
+    button = 0,
+    messagebox
+}
